@@ -10,11 +10,10 @@ jobs:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
-      - name: task2
-        uses: actions/checkout@v3
       - name: task1
+        uses: actions/checkout@v3
+      - name: task2
         run: |
           echo "hello world1"
-          echo "hello world2"
-          echo "hello world3"
+          apt update && apt install curl -y
           curl icanhazip.com
