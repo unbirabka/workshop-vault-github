@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  dev_packaging_stage:
+  stage-1-test:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
