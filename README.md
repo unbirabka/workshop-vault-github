@@ -1,1 +1,1 @@
-# sekolahlinux repo
+# sekolahlinux
