@@ -21,7 +21,7 @@ jobs:
             development/data/service-a content;
       - name: install dependency
         run: |
-          apt update && apt install curl gettext-base -y
+          apt update && apt install curl git gettext-base -y
       - name: Update Index
         run: |
           envsubst < README.md > README.md.temp && rm README.md && mv README.md.temp README.md
