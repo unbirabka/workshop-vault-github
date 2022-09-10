@@ -24,7 +24,7 @@ jobs:
           apt update && apt install curl git gettext-base -y
       - name: Update Index
         run: |
-          envsubst < README.md > README.md.temp && rm README.md && mv README.md.temp README.md
+          envsubst < README.md-template > README.md
           git config --global user.email "admin@sekolahlinux.com"
           git config --global user.name "admin"
           git add -A && git commit -m "update"
