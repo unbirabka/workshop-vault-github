@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 jobs:
   update-readme:
-#    runs-on: ubuntu-latest
     runs-on: sekolahlinux-runner
     container: bitnami/git:2-debian-11
     steps:
@@ -16,7 +15,7 @@ jobs:
           url: http://10.13.3.243:8200
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
-            development/data/service-a content;
+            development/data/service-a CONTENT;
       - name: update Index
         run: |
           apt update && apt install tree gettext-base -y
@@ -25,7 +24,7 @@ jobs:
           git config --global --add safe.directory /__w/workshop-vault-github/workshop-vault-github
           git config --global user.email "admin@sekolahlinux.com"
           git config --global user.name "admin"          
-          git add -A && git commit -m "update"          
+          git add -A && git commit -m "update github action"          
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
