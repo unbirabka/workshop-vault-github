@@ -10,10 +10,26 @@ jobs:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
-      - name: task1
+      - name: clone repository
         uses: actions/checkout@v3
-      - name: task2
+      - name: load secret from vault
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: http://10.13.3.243:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            development/data/service-a content;
+      - name: install dependency
         run: |
-          echo "hello world1"
-          apt update && apt install curl -y
-          curl icanhazip.com
+          apt update && apt install curl gettext-base -y
+      - name: Update Index
+        run: |
+          envsubst < README.md > README.md.temp && rm README.md && mv README.md.temp README.md
+          git config --global user.email "admin@sekolahlinux.com"
+          git config --global user.name "admin"
+          git add -A && git commit -m "update"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main          
