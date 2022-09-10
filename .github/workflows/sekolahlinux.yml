@@ -14,7 +14,8 @@ jobs:
         run: |
           apt update && apt install curl git gettext-base -y
           git config --global user.email "admin@sekolahlinux.com"
-          git config --global user.name "admin"          
+          git config --global user.name "admin"         
+          ls -alh 
       - name: load secret from vault
         uses: hashicorp/vault-action@v2.4.0
         with:
