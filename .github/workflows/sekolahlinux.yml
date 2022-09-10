@@ -19,11 +19,10 @@ jobs:
             development/data/service-a content;
       - name: update Index
         run: |
-          ls -alh
           apt update && apt install tree gettext-base -y
-          tree -a .git
           cat .git/config
           envsubst < README.md-template > README.md
+          git config --global --add safe.directory /__w/workshop-vault-github/workshop-vault-github
           git add -A && git commit -m "update"          
       - name: push changes
         uses: ad-m/github-push-action@master
