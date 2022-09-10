@@ -24,6 +24,8 @@ jobs:
           apt update && apt install curl git gettext-base -y
       - name: Update Index
         run: |
+          ls -alh
+          cat .git/config
           envsubst < README.md-template > README.md
           git add -A && git commit -m "update"
       - name: Push changes
