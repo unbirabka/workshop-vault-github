@@ -10,11 +10,6 @@ jobs:
     steps:
       - name: git checkout
         uses: actions/checkout@v3
-      - name: install dependency
-        run: |
-          git config --global user.email "admin@sekolahlinux.com"
-          git config --global user.name "admin"         
-          ls -alh 
       - name: load secret from vault
         uses: hashicorp/vault-action@v2.4.0
         with:
@@ -24,14 +19,11 @@ jobs:
             development/data/service-a content;
       - name: update Index
         run: |
-          ls -alh
+          apt-get install gettext-base
           envsubst < README.md-template > README.md
-      - name: commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: update from github action
-          committer_name: admin sekolahlinux
-          committer_email: admin@sekolahlinux.com         
+          git config --global user.email "admin@sekolahlinux.com"
+          git config --global user.name "admin"
+          git add -A && git commit -m "update"          
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
