@@ -25,11 +25,7 @@ jobs:
       - name: Update Index
         run: |
           ls -alh
-          cat .git/config
           envsubst < README.md-template > README.md
-          git config --global user.email "admin@sekolahlinux.com"
-          git config --global user.name "admin"          
-          git add -A && git commit -m "update"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
