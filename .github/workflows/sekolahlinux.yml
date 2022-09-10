@@ -21,8 +21,8 @@ jobs:
         run: |
           apt update && apt install gettext-base -y
           envsubst < README.md-template > README.md
-          git config --global user.email "admin@sekolahlinux.com"
-          git config --global user.name "admin"
+          git config user.email "admin@sekolahlinux.com"
+          git config user.name "admin"
           git add -A && git commit -m "update"          
       - name: push changes
         uses: ad-m/github-push-action@master
