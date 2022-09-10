@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0        
+          token: ${{ secrets.GH_TOKEN }}
       - name: load secret from vault
         uses: hashicorp/vault-action@v2.4.0
         with:
@@ -20,16 +20,17 @@ jobs:
       - name: install dependency
         run: |
           apt update && apt install curl git gettext-base -y
-      - name: Update Index
+      - name: update Index
         run: |
           ls -alh
           envsubst < README.md-template > README.md
-      - uses: EndBug/add-and-commit@v9
+      - name: commit changes
+        uses: EndBug/add-and-commit@v9
         with:
           message: update from github action
           committer_name: admin sekolahlinux
           committer_email: admin@sekolahlinux.com         
-      - name: Push changes
+      - name: push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
