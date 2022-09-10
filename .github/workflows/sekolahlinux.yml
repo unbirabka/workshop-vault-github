@@ -4,26 +4,27 @@ on: workflow_dispatch
 
 jobs:
   update-readme:
-    runs-on: sekolahlinux-runner
-    container: ubuntu:20.04
+    runs-on: ubuntu-latest
+#    runs-on: sekolahlinux-runner
+#    container: ubuntu:20.04
     steps:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
-      - name: load secret from vault
-        uses: hashicorp/vault-action@v2.4.0
-        with:
-          url: http://10.13.3.243:8200
-          token: ${{ secrets.VAULT_TOKEN }}
-          secrets: |
-            development/data/service-a content;
+#      - name: load secret from vault
+#        uses: hashicorp/vault-action@v2.4.0
+#        with:
+#          url: http://10.13.3.243:8200
+#          token: ${{ secrets.VAULT_TOKEN }}
+#          secrets: |
+#            development/data/service-a content;
       - name: install dependency
         run: |
           apt update && apt install curl git gettext-base -y
       - name: update Index
         run: |
           ls -alh
-          envsubst < README.md-template > README.md
+#          envsubst < README.md-template > README.md
       - name: commit changes
         uses: EndBug/add-and-commit@v9
         with:
