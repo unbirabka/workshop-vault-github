@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  stage-1-test:
+  update-readme:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
@@ -26,6 +26,11 @@ jobs:
         run: |
           ls -alh
           envsubst < README.md-template > README.md
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: update from github action
+          committer_name: admin sekolahlinux
+          committer_email: admin@sekolahlinux.com         
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
