@@ -8,11 +8,13 @@ jobs:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
-      - name: install dependency
-        run: |
-          apt update && apt install curl git gettext-base -y            
       - name: git checkout
         uses: actions/checkout@v3
+      - name: install dependency
+        run: |
+          apt update && apt install curl git gettext-base -y
+          git config --global user.email "admin@sekolahlinux.com"
+          git config --global user.name "admin"          
       - name: load secret from vault
         uses: hashicorp/vault-action@v2.4.0
         with:
