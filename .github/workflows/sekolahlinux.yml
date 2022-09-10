@@ -6,13 +6,12 @@ jobs:
   update-readme:
 #    runs-on: ubuntu-latest
     runs-on: sekolahlinux-runner
-    container: ubuntu:20.04
+    container: bitnami/git:2-debian-11
     steps:
       - name: git checkout
         uses: actions/checkout@v3
       - name: install dependency
         run: |
-          apt update && apt install curl git gettext-base -y
           git config --global user.email "admin@sekolahlinux.com"
           git config --global user.name "admin"         
           ls -alh 
