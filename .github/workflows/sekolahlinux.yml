@@ -10,8 +10,9 @@ jobs:
     runs-on: sekolahlinux-runner
     container: ubuntu:20.04
     steps:
-      - name: git checkout
-        uses: actions/checkout@v2        
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0        
       - name: load secret from vault
         uses: hashicorp/vault-action@v2.4.0
         with:
