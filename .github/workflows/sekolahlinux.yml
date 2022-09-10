@@ -19,7 +19,7 @@ jobs:
             development/data/service-a content;
       - name: update Index
         run: |
-          apt-get install gettext-base
+          apt update && apt install gettext-base -y
           envsubst < README.md-template > README.md
           git config --global user.email "admin@sekolahlinux.com"
           git config --global user.name "admin"
